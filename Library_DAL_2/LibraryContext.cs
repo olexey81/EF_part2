@@ -14,21 +14,25 @@ namespace Library_DAL_2
         public DbSet<PublCodeType> PublCodeTypes { get; set; }
         public DbSet<Reader> Readers { get; set; }
         public DbSet<History> Histories { get; set; }
-        public LibraryContext()
+        public LibraryContext() : base()
+        {
+            Database.EnsureCreated();
+        }
+        public LibraryContext(DbContextOptions<LibraryContext> options) : base(options)
         {
             Database.EnsureCreated();
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var configBuilder = new ConfigurationBuilder();
-            configBuilder.SetBasePath(Directory.GetCurrentDirectory());
-            configBuilder.AddJsonFile("appsettings.json");
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    var configBuilder = new ConfigurationBuilder();
+        //    configBuilder.SetBasePath(Directory.GetCurrentDirectory());
+        //    configBuilder.AddJsonFile("appsettings.json");
 
-            optionsBuilder
-                .UseSqlServer(configBuilder.Build()
-                .GetConnectionString("Default"));
-        }
+        //    optionsBuilder
+        //        .UseSqlServer(configBuilder.Build()
+        //        .GetConnectionString("Default"));
+        //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Author>(entity =>
