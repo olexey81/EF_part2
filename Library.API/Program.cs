@@ -1,5 +1,10 @@
-using Library_DAL_2;
+п»їusing Library_DAL_2;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace Library.API
 {
@@ -7,25 +12,38 @@ namespace Library.API
     {
         public static void Main(string[] args)
         {
+            // account/login  - all
+            // account/registration - librarian
+            // account/logout - all
+
+
             var builder = WebApplication.CreateBuilder(args);
 
-            // получаем строку подключения из файла конфигурации
-            //string? connectionString = builder.Configuration.GetConnectionString("Data Source=OLEKSII_HP\\SQLEXPRESS;Initial Catalog=EF_part2;Integrated Security=True;TrustServerCertificate=True");
-
-            // добавляем контекст в качестве сервиса в приложение
-            builder.Services.AddDbContext<LibraryContext>(opt => opt.UseSqlServer("Data Source=OLEKSII_HP\\SQLEXPRESS;Initial Catalog=ADO_API_HW;Integrated Security=True;TrustServerCertificate=True"));
+            builder.Services.AddDbContext<LibraryContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
 
 
             //// Add services to the container.
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                            .AddJwtBearer(opt =>
+                            {
+                                opt.TokenValidationParameters = new TokenValidationParameters
+                                {
+                                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtInfo:TokenKey"] ?? throw new ArgumentNullException("TokenKey"))),
+                                    ValidateIssuerSigningKey = true,
+                                    ValidateIssuer = false,
+                                    ValidateAudience = false,
+                                    ValidateLifetime = true
+                                };
+                            });
 
+            builder.Services.AddAuthorization();
             builder.Services.AddControllers();
             //// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             //builder.Services.AddEndpointsApiExplorer();
             //builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
-            // получение данных
 
             //// Configure the HTTP request pipeline.
             //if (app.Environment.IsDevelopment())
@@ -34,13 +52,29 @@ namespace Library.API
             //    app.UseSwaggerUI();
             //}
 
-            app.UseHttpsRedirection();
-
+            app.UseAuthentication(); 
             app.UseAuthorization();
+            app.UseHttpsRedirection();
 
             app.MapGet("db", async (LibraryContext db) => await db.Books.ToArrayAsync());
 
-            app.MapControllers(); // старт контроллеров по адресам
+
+            app.Map("/login/{username}", (string username) =>
+            {
+                var claims = new List<Claim> { new Claim(ClaimTypes.Name, username) };
+                var key = builder.Configuration["JwtInfo:TokenKey"];
+                var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+                var signature = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512Signature);
+
+                var jwt = new JwtSecurityToken(
+                                claims: claims,
+                                expires: DateTime.UtcNow.Add(TimeSpan.FromDays(2)), // РІСЂРµРјСЏ РґРµР№СЃС‚РІРёСЏ 2 days
+                                signingCredentials: signature
+                                ); ;
+
+                return new JwtSecurityTokenHandler().WriteToken(jwt);
+            });
+            app.MapControllers(); 
 
 
             app.Run();

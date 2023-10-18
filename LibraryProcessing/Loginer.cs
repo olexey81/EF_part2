@@ -1,5 +1,7 @@
-﻿using Library_DAL_2;
+﻿using Library.Services;
+using Library_DAL_2;
 using Library_DAL_2.Models;
+using System.Security.Cryptography;
 
 namespace UseContextInfo
 {
@@ -33,11 +35,14 @@ namespace UseContextInfo
             }
         }
 
-        private bool PassChecker(Librarian? librarian, Reader? reader)
+        public bool PassChecker(Librarian? librarian, Reader? reader)
         {
             Console.Write("Enter your password: ");
-            string? password = Console.ReadLine();
-            if ((librarian != null && password == librarian.Password) || (reader != null && password == reader.Password))
+            string password = Console.ReadLine()!;
+
+            var unHash = new HashService(password, librarian, reader);
+
+            if ((librarian != null && librarian.PasswordHash.SequenceEqual(unHash.PasswordHash)) || (reader != null && reader.PasswordHash.SequenceEqual(unHash.PasswordHash)))
             {
                 IsLibrarian = librarian != null ? true : false;
                 IsReader = reader != null ? true : false;

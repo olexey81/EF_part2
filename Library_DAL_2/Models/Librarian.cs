@@ -1,9 +1,10 @@
 ﻿namespace Library_DAL_2.Models
 {
-    public class Librarian
+    public class Librarian : User
     {
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
+        public Librarian()
+        {
+            Role = (int)UserRole.Librarian;
+        }
     }
 }
