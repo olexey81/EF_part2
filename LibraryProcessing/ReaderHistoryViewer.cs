@@ -9,7 +9,7 @@ namespace UseContextInfo
         private Reader? _reader;
         public ReaderHistoryViewer()
         {
-            _reader = Program.Log.CurrentReader;
+            _reader = Program.Log!.CurrentReader;
         }
         public void ShowHistory()
         {
@@ -27,7 +27,7 @@ namespace UseContextInfo
             {
                 if (record.ReturnDate > record.DeadlineDate || record.DeadlineDate < DateTime.Now)
                     Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Book ID: {record.Book.BookID}, Title: \"{record.Book.Title}\", " +
+                Console.WriteLine($"Book ID: {record.Book!.BookID}, Title: \"{record.Book.Title}\", " +
                     $"\n\tRent date: {record.RentDate}, Allowed date: {record.DeadlineDate}, Return date: {record.ReturnDate}");
                 Console.ResetColor();
             }

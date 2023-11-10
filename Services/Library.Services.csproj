@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Library_DAL_2\Library_DAL_2.csproj" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Library.Common.csproj" />
+    <ProjectReference Include="..\Library.Repository\Library.Repository.csproj" />
   </ItemGroup>
 
 </Project>

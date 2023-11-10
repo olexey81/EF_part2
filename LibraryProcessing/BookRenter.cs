@@ -11,12 +11,12 @@ namespace UseContextInfo
         public BookRenter(List<Book>? books)
         {
             _books = books;
-            _reader = Program.Log.CurrentReader;
+            _reader = Program.Log!.CurrentReader;
         }
 
         public void Rent(int ID)
         {
-            if (!_books.Any(b => b.BookID == ID))
+            if (!_books!.Any(b => b.BookID == ID))
             {
                 Console.WriteLine("Incorrect book's ID.");
             }
@@ -25,7 +25,7 @@ namespace UseContextInfo
                 using var context = new LibraryContext();
                 var book = context.Books.Where(b => b.BookID == ID).FirstOrDefault();
 
-                if (book.AtReader)
+                if (book!.AtReader)
                 {
                     Console.WriteLine($"Book is already rented by another reader.");
                 }
@@ -36,7 +36,7 @@ namespace UseContextInfo
                     {
                         Book = book,
                         RentDate = DateTime.Now,
-                        ReaderID = _reader.Login,
+                        ReaderID = _reader!.Login,
                     });
                     context.SaveChanges();
                     Console.WriteLine($"You've rented the book.");

@@ -17,13 +17,13 @@ namespace UseContextInfo
         public List<Author>? Search()
         {
             using var context = new LibraryContext();
-            if (context.Authors.Any(a => a.FullName.Contains(_name)))
+            if (context.Authors.Any(a => a.FullName!.Contains(_name!)))
             {
-                Authors = context.Authors
-                       .Include(a => a.Books)
-                           .ThenInclude(b => b.BooksAuthors)
+                Authors = context.Authors!
+                       .Include(a => a.Books!)
+                           .ThenInclude(b => b.BooksAuthors!)
                                .ThenInclude(ba => ba.Author)
-                       .Where(a => a.FullName.Contains(_name))
+                       .Where(a => a.FullName!.Contains(_name!))
                        .ToList();
                 if (Authors.Count > 0)
                 {

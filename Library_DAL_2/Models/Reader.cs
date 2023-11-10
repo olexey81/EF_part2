@@ -1,10 +1,15 @@
-﻿namespace Library_DAL_2.Models
+﻿using System.Text.Json.Serialization;
+
+namespace Library_DAL_2.Models
 {
-    public class Reader : User
+    public class Reader 
     {
-        //public string Login { get; set; }
-        //public string Password { get; set; }
-        //public string Email { get; set; }
+        public string Login { get; set; } = string.Empty;
+        public byte[] PasswordHash { get; set; } = null!;
+        public byte[] PasswordSalt { get; set; } = null!;
+        public string Email { get; set; } = string.Empty;
+        public UserRole Role { get; set; } = UserRole.Reader;
+
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string? MiddleName { get; set; } = null;
@@ -15,10 +20,9 @@
         }
 
         public string DocumentNumber { get; set; } = string.Empty;
-        public int DocumentType { get; set; } 
+        public int DocumentType { get; set; }
+        [JsonIgnore]
         public DocumentsType? DocumentTypeNavigation { get; set; }
-
-        public Reader() => Role = (int)UserRole.Reader;
 
         public override string ToString()
         {

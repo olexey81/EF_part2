@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Library_DAL_2\Library_DAL_2.csproj" />
-    <ProjectReference Include="..\Services\Library.Services.csproj" />
   </ItemGroup>
 
 </Project>

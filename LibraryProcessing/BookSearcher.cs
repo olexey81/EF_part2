@@ -29,20 +29,20 @@ namespace UseContextInfo
                 foreach (var author in _authors)
                 {
                     _books.AddRange(context.Books
-                          .Include(b => b.AuthorNavigation)
-                          .Include(b => b.PublCodeTypeNavigation)
-                          .Include(b => b.BooksAuthors)
+                          .Include(b => b.AuthorNavigation!)
+                          .Include(b => b.PublCodeTypeNavigation!)
+                          .Include(b => b.BooksAuthors!)
                               .ThenInclude(a => a.Author)
-                          .Where(b => b.AuthorNavigation == author || b.BooksAuthors.Any(a => a.AuthorID == author.AuthorID))
+                          .Where(b => b.AuthorNavigation == author || b.BooksAuthors!.Any(a => a.AuthorID == author.AuthorID))
                           .ToList());
                 }
             }
             if (_bookName != null)
             {
                 _books.AddRange(context.Books
-                        .Include(b => b.AuthorNavigation)
-                        .Include(b => b.PublCodeTypeNavigation)
-                        .Include(b => b.BooksAuthors)
+                        .Include(b => b.AuthorNavigation!)
+                        .Include(b => b.PublCodeTypeNavigation!)
+                        .Include(b => b.BooksAuthors!)
                             .ThenInclude(a => a.Author)
                         .Where(b => b.Title.Contains(_bookName))
                         .ToList());

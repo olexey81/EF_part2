@@ -1,4 +1,6 @@
-﻿namespace Library_DAL_2.Models
+﻿using System.Text.Json.Serialization;
+
+namespace Library_DAL_2.Models
 {
     public class Book
     {
@@ -11,15 +13,18 @@
         public int Year { get; set; }
         public string Country { get; set; } = string.Empty;
         public string? City { get; set; } = null!;
-        public bool AtReader { get; set; } 
+        public bool AtReader { get; set; }
 
+        //[JsonIgnore]
         public Author? AuthorNavigation { get; set; }
+        [JsonIgnore]
         public List<BooksAuthor>? BooksAuthors { get; set; }
+        //[JsonIgnore]
         public PublCodeType? PublCodeTypeNavigation { get; set; }
 
         public override string ToString()
         {
-            string authors = string.Join(", ", BooksAuthors.Select(ba => ba.Author.FirstName + " " + ba.Author.LastName));
+            string authors = string.Join(", ", BooksAuthors!.Select(ba => ba.Author.FirstName + " " + ba.Author.LastName));
 
             if (AtReader == true)
             {

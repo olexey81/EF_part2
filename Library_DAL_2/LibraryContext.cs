@@ -8,6 +8,7 @@ namespace Library_DAL_2
 {
     public class LibraryContext : DbContext
     {
+        public DbSet<Admin> Admins { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<BooksAuthor> BooksAuthors { get; set; }
@@ -39,25 +40,48 @@ namespace Library_DAL_2
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Admin>(entity =>
+            {
+                entity.HasKey(e => e.Login);
+
+                entity.Property(e => e.Login)
+                    .HasMaxLength(20);
+                entity.Property(e => e.PasswordHash)
+                    .IsRequired();
+                entity.Property(e => e.PasswordSalt)
+                     .IsRequired();
+
+                var (hash, salt) = GetHash("987654");
+                entity.HasData(
+                    new Admin()
+                    {
+                        Login = "AngryAdmin",
+                        PasswordHash = hash,
+                        PasswordSalt = salt,
+                        Email = "super@admin.net"
+                    });
+            });
+
             modelBuilder.Entity<Author>(entity =>
             {
-                entity.HasKey(e => e.AuthorID);
+            entity.HasKey(e => e.AuthorID);
 
-                entity.Property(e => e.FirstName)
-                    .HasMaxLength(20);
-                entity.Property(e => e.LastName)
-                    .HasMaxLength(20);
-                entity.Property(e => e.MiddleName)
-                    .HasMaxLength(20);
-                entity.Property(e => e.FullName)
-                    .HasMaxLength(60);
+            entity.Property(e => e.FirstName)
+                .HasMaxLength(20);
+            entity.Property(e => e.LastName)
+                .HasMaxLength(20);
+            entity.Property(e => e.MiddleName)
+                .HasMaxLength(20);
+            entity.Property(e => e.FullName)
+                .HasMaxLength(60);
 
-                entity.HasData(
-                    new Author() { AuthorID = 1, FirstName = "J.K.", LastName = "Rowling", MiddleName = null },
-                    new Author() { AuthorID = 2, FirstName = "George", LastName = "Orwell", MiddleName = null },
-                    new Author() { AuthorID = 3, FirstName = "Mykova", LastName = "Gogol", MiddleName = "Vasylyovich" },
-                    new Author() { AuthorID = 4, FirstName = "New", LastName = "Rowling", MiddleName = null } );
+            entity.HasData(
+                new Author() { AuthorID = 1, FirstName = "J.K.", LastName = "Rowling", MiddleName = null },
+                new Author() { AuthorID = 2, FirstName = "George", LastName = "Orwell", MiddleName = null },
+                new Author() { AuthorID = 3, FirstName = "Mykova", LastName = "Gogol", MiddleName = "Vasylyovich" },
+                new Author() { AuthorID = 4, FirstName = "New", LastName = "Rowling", MiddleName = null } );
             });
+
             modelBuilder.Entity<Book>(entity =>
             {
                 entity.HasKey(e => e.BookID);
@@ -157,6 +181,7 @@ namespace Library_DAL_2
 
             modelBuilder.Entity<Librarian>(entity =>
             {
+                entity.ToTable("Librarians");
                 entity.HasKey(e => e.Login);
 
                 entity.Property(e => e.Login)

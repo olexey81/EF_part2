@@ -6,6 +6,6 @@
         public byte[] PasswordHash { get; set; } = null!;
         public byte[] PasswordSalt { get; set; } = null!;
         public string Email { get; set; } = string.Empty;
-        public int Role { get; set; } = 0;
+        public UserRole Role { get; set; }
     }
 }

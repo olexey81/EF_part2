@@ -1,9 +1,9 @@
-﻿using Library_DAL_2;
+﻿using Library.Services;
+using Library.Repository;
+using Library_DAL_2;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using System.Text;
 
 namespace Library.API
@@ -12,12 +12,24 @@ namespace Library.API
     {
         public static void Main(string[] args)
         {
-            // account/login  - all
-            // account/registration - librarian
-            // account/logout - all
+            // account/login  - not auth, all
+            // account/registration/reader - auth, librarian
+            // account/registration/librarian - auth, admin
 
+            // common/books/find - auth, all, search book
+
+            // librarian/books/add - auth, librarian, add book
+            // librarian/books/delete - auth, librarian, remove book
+            // librarian/books/return - auth, librarian, return book
+            // librarian/books/update - auth, librarian, updating of books
+            // librarian/authors/add - auth, librarian, add of author
+            // librarian/authors/delete - auth, librarian, remove author
+            // librarian/authors/update - auth, librarian, add author
 
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.Configure<JwtInfo>(builder.Configuration.GetSection("JwtInfo"));
+
+
 
             builder.Services.AddDbContext<LibraryContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
@@ -37,45 +49,18 @@ namespace Library.API
                                 };
                             });
 
-            builder.Services.AddAuthorization();
             builder.Services.AddControllers();
-            //// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            //builder.Services.AddEndpointsApiExplorer();
-            //builder.Services.AddSwaggerGen();
+            builder.Services.AddRepositories();
+            builder.Services.AddServices();
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             var app = builder.Build();
-
-            //// Configure the HTTP request pipeline.
-            //if (app.Environment.IsDevelopment())
-            //{
-            //    app.UseSwagger();
-            //    app.UseSwaggerUI();
-            //}
 
             app.UseAuthentication(); 
             app.UseAuthorization();
             app.UseHttpsRedirection();
 
-            app.MapGet("db", async (LibraryContext db) => await db.Books.ToArrayAsync());
-
-
-            app.Map("/login/{username}", (string username) =>
-            {
-                var claims = new List<Claim> { new Claim(ClaimTypes.Name, username) };
-                var key = builder.Configuration["JwtInfo:TokenKey"];
-                var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
-                var signature = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512Signature);
-
-                var jwt = new JwtSecurityToken(
-                                claims: claims,
-                                expires: DateTime.UtcNow.Add(TimeSpan.FromDays(2)), // время действия 2 days
-                                signingCredentials: signature
-                                ); ;
-
-                return new JwtSecurityTokenHandler().WriteToken(jwt);
-            });
             app.MapControllers(); 
-
 
             app.Run();
         }

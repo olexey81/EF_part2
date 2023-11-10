@@ -67,7 +67,7 @@ namespace UseContextInfo
                 Console.WriteLine("If you need to change a value - enter the new one, if not - just press Enter.");
 
                 Console.Write($"Current book's title is \"{book.Title}\": ");
-                string title = Console.ReadLine();
+                string title = Console.ReadLine()!;
                 book.Title = !string.IsNullOrWhiteSpace(title) ? title : book.Title;
 
                 Console.Write($"Current author ID is \"{book.Author}\": ");
@@ -76,11 +76,11 @@ namespace UseContextInfo
                 book.Author = authorID > 0 ? authorID : book.Author;
 
                 Console.Write($"Current genre is \"{book.Genre}\": ");
-                string genre = Console.ReadLine();
+                string genre = Console.ReadLine()!;
                 book.Genre = !string.IsNullOrWhiteSpace(genre) ? genre : book.Genre;
 
                 Console.Write($"Current publication code is \"{book.PublCode}\": ");
-                string publCode = Console.ReadLine();
+                string publCode = Console.ReadLine()!;
                 book.PublCode = !string.IsNullOrWhiteSpace(publCode) ? publCode : book.PublCode;
 
                 Console.Write($"Current type of publication code is \"{book.PublCodeType}\": ");
@@ -92,11 +92,11 @@ namespace UseContextInfo
                 book.Year = year > 0 ? year : book.Year;
 
                 Console.Write($"Current country is \"{book.Country}\": ");
-                string country = Console.ReadLine();
+                string country = Console.ReadLine()!;
                 book.Country = !string.IsNullOrWhiteSpace(country) ? country : book.Country;
 
                 Console.Write($"Current city is \"{book.City}\": ");
-                string city = Console.ReadLine();
+                string city = Console.ReadLine()!;
                 book.City = !string.IsNullOrWhiteSpace(city) ? city : book.City;
 
                 var booksAuthors = context.BooksAuthors.Where(b => b.BookID == book.BookID && b.AuthorID == authorIDPrevious).ToList();

@@ -41,15 +41,15 @@ namespace UseContextInfo
                 Console.WriteLine("If you need to change a value - enter the new one, if not - just press Enter.");
 
                 Console.Write($"Current author's first name is \"{author.FirstName}\": ");
-                string firstName = Console.ReadLine();
+                string firstName = Console.ReadLine()!;
                 author.FirstName = !string.IsNullOrWhiteSpace(firstName) ? firstName : author.FirstName;
 
                 Console.Write($"Current author's last name is \"{author.LastName}\": ");
-                string lastName = Console.ReadLine();
+                string lastName = Console.ReadLine()!;
                 author.LastName = !string.IsNullOrWhiteSpace(lastName) ? lastName : author.LastName;
 
                 Console.Write($"Current author's middle name is \"{author.MiddleName}\": ");
-                string middleName = Console.ReadLine();
+                string middleName = Console.ReadLine()!;
                 author.MiddleName = !string.IsNullOrWhiteSpace(middleName) ? middleName : author.MiddleName;
 
                 context.SaveChanges();
