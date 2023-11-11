@@ -1,4 +1,6 @@
-﻿namespace Library_DAL_2.Models
+﻿using Library.Common.Enums;
+
+namespace Library_DAL_2.Models
 {
     public class Librarian
     {

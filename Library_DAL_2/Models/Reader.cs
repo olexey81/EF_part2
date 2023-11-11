@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using Library.Common.Enums;
+using System.Text.Json.Serialization;
 
 namespace Library_DAL_2.Models
 {

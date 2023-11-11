@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Library.Common.DTO.Accounts;
+using Library.Common.Enums;
 using Library.Common.Interfaces.Accounts;
 using Library.Common.Models;
 using Library_DAL_2;
@@ -23,9 +24,10 @@ namespace Library.Repository
             if (await IsAccountExists(newAccount.Login))
                 return (false, "Login is already using by another user");
 
-            if ((int)newAccount.Role == (int)UserRole.Librarian)
+            if (newAccount.Role == UserRole.Librarian)
                 await _context.Librarians.AddAsync(_mapper.Map<Librarian>(newAccount));
-            if (newAccount.Role.ToString() == UserRole.Reader.ToString())
+
+            if (newAccount.Role == UserRole.Reader)
                 await _context.Readers.AddAsync(_mapper.Map<Reader>(newAccount));
 
             if (await _context.SaveChangesAsync() > 0)
@@ -54,13 +56,13 @@ namespace Library.Repository
         {
             var user = await _context.Admins.AsNoTracking()
                                                 .Select(u => new { u.Login, u.PasswordHash, u.PasswordSalt })
-                                                .SingleOrDefaultAsync(u => u.Login == login)
+                                                .FirstOrDefaultAsync(u => u.Login == login)
                     ?? await _context.Librarians.AsNoTracking()
                                                 .Select(u => new { u.Login, u.PasswordHash, u.PasswordSalt })
-                                                .SingleOrDefaultAsync(u => u.Login == login)
+                                                .FirstOrDefaultAsync(u => u.Login == login)
                     ?? await _context.Readers.AsNoTracking()
                                              .Select(u => new { u.Login, u.PasswordHash, u.PasswordSalt })
-                                             .SingleOrDefaultAsync(u => u.Login == login);
+                                             .FirstOrDefaultAsync(u => u.Login == login);
 
             return user == null ? null : (user.PasswordHash, user.PasswordSalt);
         }
@@ -89,7 +91,7 @@ namespace Library.Repository
                 reader.DocumentType = updateAccount.DocumentType ?? reader.DocumentType;
 
                 if (await _context.SaveChangesAsync() > 0)
-                    return (true, "Account updated");
+                    return (true, "Reader updated");
             }
             if (account != null && account.Role == UserRole.Librarian.ToString())
             {
@@ -97,7 +99,7 @@ namespace Library.Repository
                 librarian!.Email = updateAccount.Email ?? librarian.Email;
 
                 if (await _context.SaveChangesAsync() > 0)
-                    return (true, "Account updated");
+                    return (true, "Librarian updated");
             }
             return (false, "No changes");
         }
@@ -110,13 +112,13 @@ namespace Library.Repository
             if (readerToRemove != null)
                 _context.Readers.Remove(readerToRemove);
             if (await _context.SaveChangesAsync() > 0)
-                return (true, "Account deleted");
+                return (true, "Reader deleted");
 
             var librarianToRemove = await _context.Librarians.FirstOrDefaultAsync(l => l.Login == login);
             if (librarianToRemove != null)
                 _context.Librarians.Remove(librarianToRemove);
             if (await _context.SaveChangesAsync() > 0)
-                return (true, "Account deleted");
+                return (true, "Librarian deleted");
 
             return (false, "No changes");
         }

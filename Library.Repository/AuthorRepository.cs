@@ -37,7 +37,7 @@ namespace Library.Repository
             if (!await IsAuthorExistByID(deleteAuthorID))
                 return (false, "Author not found");
 
-            var author = await _context.Authors.FirstAsync(b => b.AuthorID == deleteAuthorID);
+            var author = await _context.Authors.FirstOrDefaultAsync(b => b.AuthorID == deleteAuthorID);
 
             var bookAuthor = await _context.BooksAuthors.Where(ba => ba.BookID == deleteAuthorID).ToListAsync();
             _context.BooksAuthors.RemoveRange(bookAuthor);
@@ -85,7 +85,7 @@ namespace Library.Repository
             if (!await IsAuthorExistByID(updateAuthor.AuthorID))
                 return (false, "Author not found");
 
-            var author = _context.Authors.SingleOrDefault(b => b.AuthorID == updateAuthor.AuthorID);
+            var author = await _context.Authors.FirstOrDefaultAsync(b => b.AuthorID == updateAuthor.AuthorID);
 
             if (author != null)
             {

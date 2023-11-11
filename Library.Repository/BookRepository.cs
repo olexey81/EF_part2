@@ -43,7 +43,7 @@ namespace Library.Repository
             if (!await _context.Books.AsNoTracking().AnyAsync(b => b.BookID == deleteBookID))
                 return (false, "Book not found");
 
-            var book = await _context.Books.FirstAsync(b => b.BookID == deleteBookID);
+            var book = await _context.Books.FirstOrDefaultAsync(b => b.BookID == deleteBookID);
 
             var bookAuthor = await _context.BooksAuthors.Where(ba => ba.BookID == deleteBookID).ToListAsync();
             _context.BooksAuthors.RemoveRange(bookAuthor);
@@ -111,7 +111,7 @@ namespace Library.Repository
 
             var historyRecord = await _context.Histories
                                               .Include(h => h.Book)
-                                              .FirstOrDefaultAsync(h => h.ReaderID == readerID && h.Book!.BookID == bookID && h.Book.AtReader && h.ReturnDate == null);
+                                              .SingleOrDefaultAsync(h => h.ReaderID == readerID && h.Book!.BookID == bookID && h.Book.AtReader && h.ReturnDate == null);
 
             if (historyRecord != null)
             {
@@ -131,7 +131,7 @@ namespace Library.Repository
             if (!await _context.Books.AsNoTracking().AnyAsync(b => b.BookID == updateBook.BookID))
                 return (false, "Book not found");
 
-            var book = await _context.Books.FirstAsync(b => b.BookID == updateBook.BookID);
+            var book = await _context.Books.FirstOrDefaultAsync(b => b.BookID == updateBook.BookID);
             if (book != null)
             {
                 book.Title = updateBook.Title ?? book.Title;

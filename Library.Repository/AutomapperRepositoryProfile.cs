@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Library.Common.DTO.Authors;
 using Library.Common.DTO.Books;
+using Library.Common.Enums;
 using Library.Common.Models;
 using Library_DAL_2.Models;
 
