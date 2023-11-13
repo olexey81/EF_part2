@@ -2,7 +2,7 @@
 {
     public class LibrarianSubMenuInfo
     {
-        [MenuAction("The debtors", 1)]
+        [MenuAction("The debtors", 1)] // to check
         public void Debtors()
         {
             Console.Clear();
@@ -14,7 +14,7 @@
             Console.ReadKey();
         }
 
-        [MenuAction("Readers with books in rent", 2)]
+        [MenuAction("Readers with books in rent", 2)]   // to check
         public void ShowInRent()
         {
             Console.Clear();
@@ -31,7 +31,7 @@
         {
             Console.Clear();
             Console.Write("Enter reader's login to show history: ");
-            string login = Console.ReadLine();
+            string login = Console.ReadLine()!;
 
             var history = new HistoryChecker(login);
             history.ShowReaderHistory();

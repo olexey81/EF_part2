@@ -1,11 +1,14 @@
 ﻿using Library_DAL_2.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Library_DAL_2
 {
     public class LibraryContext : DbContext
     {
+        public DbSet<Admin> Admins { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<BooksAuthor> BooksAuthors { get; set; }
@@ -16,44 +19,69 @@ namespace Library_DAL_2
         public DbSet<History> Histories { get; set; }
         public LibraryContext() : base()
         {
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
         public LibraryContext(DbContextOptions<LibraryContext> options) : base(options)
         {
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    var configBuilder = new ConfigurationBuilder();
-        //    configBuilder.SetBasePath(Directory.GetCurrentDirectory());
-        //    configBuilder.AddJsonFile("appsettings.json");
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var configBuilder = new ConfigurationBuilder();
+            configBuilder.SetBasePath("D:\\OneDrive\\Coding\\СSh_Pro\\EF_part2\\Library.API"/*Directory.GetCurrentDirectory()*/);
+            configBuilder.AddJsonFile("appsettings.json");
 
-        //    optionsBuilder
-        //        .UseSqlServer(configBuilder.Build()
-        //        .GetConnectionString("Default"));
-        //}
+            optionsBuilder
+                .UseSqlServer(configBuilder.Build()
+                .GetConnectionString("Default"));
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Admin>(entity =>
+            {
+                entity.HasKey(e => e.Login);
+
+                entity.Property(e => e.Login)
+                    .HasMaxLength(20);
+                entity.Property(e => e.PasswordHash)
+                    .IsRequired();
+                entity.Property(e => e.PasswordSalt)
+                     .IsRequired();
+
+                var (hash, salt) = GetHash("987654");
+                entity.HasData(
+                    new Admin()
+                    {
+                        Login = "AngryAdmin",
+                        PasswordHash = hash,
+                        PasswordSalt = salt,
+                        Email = "super@admin.net"
+                    });
+            });
+
             modelBuilder.Entity<Author>(entity =>
             {
-                entity.HasKey(e => e.AuthorID);
+            entity.HasKey(e => e.AuthorID);
 
-                entity.Property(e => e.FirstName)
-                    .HasMaxLength(20);
-                entity.Property(e => e.LastName)
-                    .HasMaxLength(20);
-                entity.Property(e => e.MiddleName)
-                    .HasMaxLength(20);
-                entity.Property(e => e.FullName)
-                    .HasMaxLength(60);
+            entity.Property(e => e.FirstName)
+                .HasMaxLength(20);
+            entity.Property(e => e.LastName)
+                .HasMaxLength(20);
+            entity.Property(e => e.MiddleName)
+                .HasMaxLength(20);
+            entity.Property(e => e.FullName)
+                .HasMaxLength(60);
 
-                entity.HasData(
-                    new Author() { AuthorID = 1, FirstName = "J.K.", LastName = "Rowling", MiddleName = null },
-                    new Author() { AuthorID = 2, FirstName = "George", LastName = "Orwell", MiddleName = null },
-                    new Author() { AuthorID = 3, FirstName = "Mykova", LastName = "Gogol", MiddleName = "Vasylyovich" },
-                    new Author() { AuthorID = 4, FirstName = "New", LastName = "Rowling", MiddleName = null } );
+            entity.HasData(
+                new Author() { AuthorID = 1, FirstName = "J.K.", LastName = "Rowling", MiddleName = null },
+                new Author() { AuthorID = 2, FirstName = "George", LastName = "Orwell", MiddleName = null },
+                new Author() { AuthorID = 3, FirstName = "Mykova", LastName = "Gogol", MiddleName = "Vasylyovich" },
+                new Author() { AuthorID = 4, FirstName = "New", LastName = "Rowling", MiddleName = null } );
             });
+
             modelBuilder.Entity<Book>(entity =>
             {
                 entity.HasKey(e => e.BookID);
@@ -153,20 +181,58 @@ namespace Library_DAL_2
 
             modelBuilder.Entity<Librarian>(entity =>
             {
+                entity.ToTable("Librarians");
                 entity.HasKey(e => e.Login);
 
                 entity.Property(e => e.Login)
                     .HasMaxLength(20);
                 entity.Property(e => e.Email)
                     .HasMaxLength(50);
-                entity.Property(e => e.Password)
-                    .HasMaxLength(20);
-               
+                entity.Property(e => e.PasswordHash)
+                    .IsRequired();
+                entity.Property(e => e.PasswordSalt)
+                     .IsRequired();
+
+                var (hash, salt) = GetHash("00000");
                 entity.HasData(
-                    new Librarian() { Login = "mainLib", Password = "a09876", Email = "mainLib@lib.com.ua" },
-                    new Librarian() { Login = "middleLib", Password = "b09876", Email = "middleLib@lib.com.ua" },
-                    new Librarian() { Login = "youngLib", Password = "c09876", Email = "youngLib@lib.com.ua" } ,
-                    new Librarian() { Login = "111", Password = "111", Email = "111@lib.com.ua" } );
+                    new Librarian()
+                    {
+                        Login = "mainLib",
+                        PasswordHash = hash,
+                        PasswordSalt = salt,
+                        Email = "mainLib@lib.com.ua"
+                    });
+
+                (hash, salt) = GetHash("11111");
+                entity.HasData(
+                    new Librarian()
+                    {
+                        Login = "middleLib",
+                        PasswordHash = hash,
+                        PasswordSalt = salt,
+                        Email = "middleLib@lib.com.ua"
+                    });
+
+                (hash, salt) = GetHash("22222");
+                entity.HasData(
+                    new Librarian()
+                    {
+                        Login = "youngLib",
+                        PasswordHash = hash,
+                        PasswordSalt = salt,
+                        Email = "youngLib@lib.com.ua"
+                    });
+
+                (hash, salt) = GetHash("12345");
+                entity.HasData(
+                    new Librarian()
+                    {
+                        Login = "111",
+                        PasswordHash = hash,
+                        PasswordSalt = salt,
+                        Email = "111@lib.com.ua"
+                    }
+                    );
             });
 
             modelBuilder.Entity<PublCodeType>(entity =>
@@ -179,7 +245,7 @@ namespace Library_DAL_2
                 entity.HasData(
                     new PublCodeType() { PublCodeTypeID = 1, TypeName = "ISBN" },
                     new PublCodeType() { PublCodeTypeID = 2, TypeName = "BBK" });
-        });
+            });
 
             modelBuilder.Entity<Reader>(entity =>
             {
@@ -199,87 +265,123 @@ namespace Library_DAL_2
                     .HasMaxLength(20);
                 entity.Property(e => e.FullName)
                     .HasMaxLength(60);
-                entity.Property(e => e.Password)
-                    .HasMaxLength(20);
+                entity.Property(e => e.PasswordHash)
+                    .IsRequired();
+                entity.Property(e => e.PasswordSalt)
+                    .IsRequired();
 
                 entity.HasOne(d => d.DocumentTypeNavigation).WithMany(p => p.Readers)
                     .HasForeignKey(d => d.DocumentType);
-                
+
+                var (hash, salt) = GetHash("00000");
                 entity.HasData(
                     new Reader()
                     {
                         Login = "ad_dr",
-                        Password = "123_ad",
+                        PasswordHash = hash,
+                        PasswordSalt = salt,
                         Email = "a.d@lib.com.ua",
                         FirstName = "Adam",
                         LastName = "Driser",
                         DocumentNumber = "N12345",
                         DocumentType = 2
-                    },
+                    }
+                );
+
+                (hash, salt) = GetHash("11111");
+                entity.HasData(
                     new Reader()
                     {
                         Login = "ph_co",
-                        Password = "234_pc",
+                        PasswordHash = hash,
+                        PasswordSalt = salt,
                         Email = "p.c@lib.com.ua",
                         FirstName = "Phill",
                         LastName = "Colins",
                         DocumentNumber = "w23423",
                         DocumentType = 1
-                    },
+                    }
+                );
+
+                (hash, salt) = GetHash("22222");
+                entity.HasData(
                     new Reader()
                     {
                         Login = "pe_pe",
-                        Password = "987_pp",
+                        PasswordHash = hash,
+                        PasswordSalt = salt,
                         Email = "p.p@lib.com.ua",
                         FirstName = "Petro",
                         LastName = "Petrenko",
                         MiddleName = "Andriyovich",
                         DocumentNumber = "789456",
                         DocumentType = 3
-                    },
+                    }
+                );
+
+                (hash, salt) = GetHash("33333");
+                entity.HasData(
                     new Reader()
                     {
                         Login = "va_ko",
-                        Password = "hjk_vk",
+                        PasswordHash = hash,
+                        PasswordSalt = salt,
                         Email = "v.k@lib.com.ua",
                         FirstName = "Vasyl",
                         LastName = "Kovtun",
                         MiddleName = "Ivanovych",
                         DocumentNumber = "654897",
                         DocumentType = 3
-                    },
+                    }
+                );
+
+                (hash, salt) = GetHash("12345");
+                entity.HasData(
                     new Reader()
                     {
                         Login = "222",
-                        Password = "222",
+                        PasswordHash = hash,
+                        PasswordSalt = salt,
                         Email = "222@lib.com.ua",
                         FirstName = "222",
                         LastName = "222",
                         MiddleName = "222",
                         DocumentNumber = "222",
                         DocumentType = 3
-                    },
+                    }
+                );
+
+                (hash, salt) = GetHash("12345");
+                entity.HasData(
                     new Reader()
                     {
                         Login = "333",
-                        Password = "333",
+                        PasswordHash = hash,
+                        PasswordSalt = salt,
                         Email = "333@lib.com.ua",
                         FirstName = "333",
                         LastName = "333",
                         MiddleName = "333",
                         DocumentNumber = "222",
                         DocumentType = 3
-                    },
+                    }
+                );
+
+                (hash, salt) = GetHash("44444");
+                entity.HasData(
                     new Reader()
                     {
                         Login = "pa_lu",
-                        Password = "3e4_pl",
+                        PasswordHash = hash,
+                        PasswordSalt = salt,
                         Email = "p.l@lib.com.ua",
                         FirstName = "Patrice",
                         LastName = "Lumumba",
                         DocumentNumber = "0123456J",
                         DocumentType = 4
-                    });
+                    }
+                );
+
             });
             modelBuilder.Entity<History>(entity =>
             {
@@ -292,6 +394,15 @@ namespace Library_DAL_2
                 .WithMany()
                 .HasForeignKey(h => h.ReaderID);
             });
+        }
+
+        private (byte[], byte[]) GetHash(string password)
+        {
+            var hmac = new HMACSHA512();
+            var PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+            var PasswordSalt = hmac.Key;
+            hmac.Dispose();
+            return (PasswordHash, PasswordSalt);
         }
     }
 }

@@ -4,8 +4,8 @@ namespace UseContextInfo.Menu.UI
 {
     public class LibrarianSubMenuUpdReader
     {
-        [MenuAction("Add new reader", 1)]
-        public void New()
+        [MenuAction("Add new reader", 1)]// done
+        public void New() 
         {
             Registrar reg = new();
             reg.SignUp(new Reader());
@@ -14,7 +14,7 @@ namespace UseContextInfo.Menu.UI
             Console.ReadKey();
         }
 
-        [MenuAction("Update reader's data", 2)]
+        [MenuAction("Update reader's data", 2)]// done
         public void Update()
         {
             Console.Clear();
@@ -24,7 +24,7 @@ namespace UseContextInfo.Menu.UI
             Console.ReadKey();
         }
 
-        [MenuAction("Remove reader", 3)]
+        [MenuAction("Remove reader", 3)]// done
         public void Remove()
         {
             Console.Clear();

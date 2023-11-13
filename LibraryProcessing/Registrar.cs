@@ -25,12 +25,15 @@ namespace UseContextInfo
                 Console.Write("Enter your email: ");
                 string email = Console.ReadLine()!;
 
+                var hash = new HashService(password);
+
                 context.Librarians.Add(new Librarian()
                 {
                     Login = _login,
-                    Password = password,    
+                    PasswordHash = hash.PasswordHash,
+                    PasswordSalt = hash.PasswordSalt,
                     Email = email
-                });
+                }); ;
                 context.SaveChanges();
                 Console.WriteLine("New librarian successfully registered!");
             }
@@ -58,11 +61,14 @@ namespace UseContextInfo
                 string docNumber = Console.ReadLine()!;
                 Console.Write("Enter document's type (from 1 to 4): ");
                 int docType = int.Parse(Console.ReadLine()!);
-                
+
+                var hash = new HashService(password);
+
                 context.Readers.Add(new Reader()
                 {
                     Login = _login!,
-                    Password = password!,
+                    PasswordHash = hash.PasswordHash,
+                    PasswordSalt = hash.PasswordSalt,
                     Email = email!,
                     FirstName = firstName!,
                     LastName = lastName!,

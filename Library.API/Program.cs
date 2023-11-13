@@ -1,5 +1,10 @@
+п»їusing Library.Services;
+using Library.Repository;
 using Library_DAL_2;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Library.API
 {
@@ -7,41 +12,55 @@ namespace Library.API
     {
         public static void Main(string[] args)
         {
+            // account/login  - not auth, all
+            // account/registration/reader - auth, librarian
+            // account/registration/librarian - auth, admin
+
+            // common/books/find - auth, all, search book
+
+            // librarian/books/add - auth, librarian, add book
+            // librarian/books/delete - auth, librarian, remove book
+            // librarian/books/return - auth, librarian, return book
+            // librarian/books/update - auth, librarian, updating of books
+            // librarian/authors/add - auth, librarian, add of author
+            // librarian/authors/delete - auth, librarian, remove author
+            // librarian/authors/update - auth, librarian, add author
+
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.Configure<JwtInfo>(builder.Configuration.GetSection("JwtInfo"));
 
-            // получаем строку подключения из файла конфигурации
-            //string? connectionString = builder.Configuration.GetConnectionString("Data Source=OLEKSII_HP\\SQLEXPRESS;Initial Catalog=EF_part2;Integrated Security=True;TrustServerCertificate=True");
 
-            // добавляем контекст в качестве сервиса в приложение
-            builder.Services.AddDbContext<LibraryContext>(opt => opt.UseSqlServer("Data Source=OLEKSII_HP\\SQLEXPRESS;Initial Catalog=ADO_API_HW;Integrated Security=True;TrustServerCertificate=True"));
+
+            builder.Services.AddDbContext<LibraryContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
 
 
             //// Add services to the container.
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                            .AddJwtBearer(opt =>
+                            {
+                                opt.TokenValidationParameters = new TokenValidationParameters
+                                {
+                                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtInfo:TokenKey"] ?? throw new ArgumentNullException("TokenKey"))),
+                                    ValidateIssuerSigningKey = true,
+                                    ValidateIssuer = false,
+                                    ValidateAudience = false,
+                                    ValidateLifetime = true
+                                };
+                            });
 
             builder.Services.AddControllers();
-            //// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            //builder.Services.AddEndpointsApiExplorer();
-            //builder.Services.AddSwaggerGen();
+            builder.Services.AddRepositories();
+            builder.Services.AddServices();
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             var app = builder.Build();
-            // получение данных
 
-            //// Configure the HTTP request pipeline.
-            //if (app.Environment.IsDevelopment())
-            //{
-            //    app.UseSwagger();
-            //    app.UseSwaggerUI();
-            //}
-
+            app.UseAuthentication(); 
+            app.UseAuthorization();
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
-
-            app.MapGet("db", async (LibraryContext db) => await db.Books.ToArrayAsync());
-
-            app.MapControllers(); // старт контроллеров по адресам
-
+            app.MapControllers(); 
 
             app.Run();
         }

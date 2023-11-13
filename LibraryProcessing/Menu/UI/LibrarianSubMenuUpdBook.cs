@@ -2,7 +2,7 @@
 {
     internal class LibrarianSubMenuUpdBook
     {
-        [MenuAction("Add new book", 1)]
+        [MenuAction("Add new book", 1)]  //done
         public void New()
         {
             Console.Clear();
@@ -12,7 +12,7 @@
             Console.ReadKey();
         }
 
-        [MenuAction("Update book's data", 2)]
+        [MenuAction("Update book's data", 2)] //done
         public void Update()
         {
             Console.Clear();
@@ -22,7 +22,7 @@
             Console.ReadKey();
         }
 
-        [MenuAction("Remove book", 3)]
+        [MenuAction("Remove book", 3)] //done
         public void Remove()
         {
             Console.Clear();
@@ -32,7 +32,7 @@
             Console.ReadKey();
         }
 
-        [MenuAction("Add new author", 4)]
+        [MenuAction("Add new author", 4)] //done
         public void NewAuth()
         {
             Console.Clear();
@@ -42,7 +42,7 @@
             Console.ReadKey();
         }
 
-        [MenuAction("Update author's data", 5)]
+        [MenuAction("Update author's data", 5)] //done
         public void UpdateAuth()
         {
             Console.Clear();
@@ -52,7 +52,7 @@
             Console.ReadKey();
         }
 
-        [MenuAction("Remove author", 6)]
+        [MenuAction("Remove author", 6)] //done
         public void RemoveAuth()
         {
             Console.Clear();
@@ -62,7 +62,7 @@
             Console.ReadKey();
         }
 
-        [MenuAction("Update authors for books", 7)]
+        [MenuAction("Update authors for books", 7)] //done in book update
         public void UpdateBooksAuthors()
         {
             Console.Clear();
