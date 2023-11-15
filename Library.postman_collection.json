@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "9f44760d-68f8-4909-8476-dd60066ee002",
 		"name": "Library",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "30024938"
 	},
 	"item": [
@@ -14,9 +14,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQW5ncnlBZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6InN1cGVyQGFkbWluLm5ldCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzI0MjU5MzY3fQ.gZ4nuovw6x1GlR3J9d4UJVn5sZvM29WLAZG8w7-BcbcKqHFGNMaoRelZnP6rAfVP8b5JzVqrQnuHwpSgLKnfeg"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQW5ncnlBZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6InN1cGVyQGFkbWluLm5ldCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzI0MjU5MzY3fQ.gZ4nuovw6x1GlR3J9d4UJVn5sZvM29WLAZG8w7-BcbcKqHFGNMaoRelZnP6rAfVP8b5JzVqrQnuHwpSgLKnfeg",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
@@ -29,7 +33,18 @@
 								}
 							}
 						},
-						"url": "https://localhost:7089/registration/librarian"
+						"url": {
+							"raw": "https://localhost:7089/registration/librarian",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7089",
+							"path": [
+								"registration",
+								"librarian"
+							]
+						}
 					},
 					"response": []
 				},
@@ -38,9 +53,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQW5ncnlBZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6InN1cGVyQGFkbWluLm5ldCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzI0MjU5MzY3fQ.gZ4nuovw6x1GlR3J9d4UJVn5sZvM29WLAZG8w7-BcbcKqHFGNMaoRelZnP6rAfVP8b5JzVqrQnuHwpSgLKnfeg"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQW5ncnlBZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6InN1cGVyQGFkbWluLm5ldCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzI0MjU5MzY3fQ.gZ4nuovw6x1GlR3J9d4UJVn5sZvM29WLAZG8w7-BcbcKqHFGNMaoRelZnP6rAfVP8b5JzVqrQnuHwpSgLKnfeg",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
@@ -53,7 +72,18 @@
 								}
 							}
 						},
-						"url": "https://localhost:7089/registration/reader"
+						"url": {
+							"raw": "https://localhost:7089/registration/reader",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7089",
+							"path": [
+								"registration",
+								"reader"
+							]
+						}
 					},
 					"response": []
 				},
@@ -62,22 +92,38 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQW5ncnlBZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6InN1cGVyQGFkbWluLm5ldCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzI0MjU5MzY3fQ.gZ4nuovw6x1GlR3J9d4UJVn5sZvM29WLAZG8w7-BcbcKqHFGNMaoRelZnP6rAfVP8b5JzVqrQnuHwpSgLKnfeg"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQW5ncnlBZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6InN1cGVyQGFkbWluLm5ldCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzI0MjU5MzY3fQ.gZ4nuovw6x1GlR3J9d4UJVn5sZvM29WLAZG8w7-BcbcKqHFGNMaoRelZnP6rAfVP8b5JzVqrQnuHwpSgLKnfeg",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Login\" : \"11122334444555\",\r\n\r\n    \"Email\" : \"somenew@mailertert\",\r\n    \"FirstName\" : \"FirstNameNew\",\r\n    \"LastName\" : \"LastNameNew\",\r\n    //\"MiddleName\" : \"MiddleName\",\r\n    //\"DocumentNumber\" : \"123456dsfgdfhbd\",\r\n    \"DocumentType\" : 2\r\n}",
+							"raw": "{\r\n    \"Login\" : \"11122334444555\",\r\n\r\n    \"Email\" : \"somenew@maile\",\r\n    \"FirstName\" : \"FirstNameNew\",\r\n    \"LastName\" : \"LastNameNew\",\r\n    //\"MiddleName\" : \"MiddleName\",\r\n    \"DocumentNumber\" : \"123456dsfgdfhbd\",\r\n    \"DocumentType\" : 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "https://localhost:7089/registration/reader/update"
+						"url": {
+							"raw": "https://localhost:7089/registration/reader/update",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7089",
+							"path": [
+								"registration",
+								"reader",
+								"update"
+							]
+						}
 					},
 					"response": []
 				},
@@ -86,22 +132,38 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQW5ncnlBZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6InN1cGVyQGFkbWluLm5ldCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzI0MjU5MzY3fQ.gZ4nuovw6x1GlR3J9d4UJVn5sZvM29WLAZG8w7-BcbcKqHFGNMaoRelZnP6rAfVP8b5JzVqrQnuHwpSgLKnfeg"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQW5ncnlBZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6InN1cGVyQGFkbWluLm5ldCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzI0MjU5MzY3fQ.gZ4nuovw6x1GlR3J9d4UJVn5sZvM29WLAZG8w7-BcbcKqHFGNMaoRelZnP6rAfVP8b5JzVqrQnuHwpSgLKnfeg",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Login\" : \"1999\",\r\n    \"Email\" : \"somenew@mailertert2\"\r\n}",
+							"raw": "{\r\n    \"Login\" : \"1992349\",\r\n    \"Email\" : \"somenew@mailertert2\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "https://localhost:7089/registration/librarian/update"
+						"url": {
+							"raw": "https://localhost:7089/registration/librarian/update",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7089",
+							"path": [
+								"registration",
+								"librarian",
+								"update"
+							]
+						}
 					},
 					"response": []
 				},
@@ -110,9 +172,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQW5ncnlBZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6InN1cGVyQGFkbWluLm5ldCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzI0MjU5MzY3fQ.gZ4nuovw6x1GlR3J9d4UJVn5sZvM29WLAZG8w7-BcbcKqHFGNMaoRelZnP6rAfVP8b5JzVqrQnuHwpSgLKnfeg"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQW5ncnlBZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6InN1cGVyQGFkbWluLm5ldCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzI0MjU5MzY3fQ.gZ4nuovw6x1GlR3J9d4UJVn5sZvM29WLAZG8w7-BcbcKqHFGNMaoRelZnP6rAfVP8b5JzVqrQnuHwpSgLKnfeg",
+									"type": "string"
+								}
+							]
 						},
 						"method": "DELETE",
 						"header": [],
@@ -126,7 +192,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7089/registration/reader/delete?readerLogin=11122334444555",
+							"raw": "https://localhost:7089/registration/reader/delete/11122334444555",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -135,13 +201,8 @@
 							"path": [
 								"registration",
 								"reader",
-								"delete"
-							],
-							"query": [
-								{
-									"key": "readerLogin",
-									"value": "11122334444555"
-								}
+								"delete",
+								"11122334444555"
 							]
 						}
 					},
@@ -152,9 +213,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQW5ncnlBZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6InN1cGVyQGFkbWluLm5ldCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzI0MjU5MzY3fQ.gZ4nuovw6x1GlR3J9d4UJVn5sZvM29WLAZG8w7-BcbcKqHFGNMaoRelZnP6rAfVP8b5JzVqrQnuHwpSgLKnfeg"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQW5ncnlBZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6InN1cGVyQGFkbWluLm5ldCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNzI0MjU5MzY3fQ.gZ4nuovw6x1GlR3J9d4UJVn5sZvM29WLAZG8w7-BcbcKqHFGNMaoRelZnP6rAfVP8b5JzVqrQnuHwpSgLKnfeg",
+									"type": "string"
+								}
+							]
 						},
 						"method": "DELETE",
 						"header": [],
@@ -168,7 +233,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7089/registration/librarian/delete?librarianLogin=1992349",
+							"raw": "https://localhost:7089/registration/librarian/delete/1992349",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -177,13 +242,8 @@
 							"path": [
 								"registration",
 								"librarian",
-								"delete"
-							],
-							"query": [
-								{
-									"key": "librarianLogin",
-									"value": "1992349"
-								}
+								"delete",
+								"1992349"
 							]
 						}
 					},
@@ -199,14 +259,18 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7089/librarian/books/return/?readerid=222&bookid=1",
+							"raw": "https://localhost:7089/librarian/books/return/2?readerid=222",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -216,7 +280,7 @@
 								"librarian",
 								"books",
 								"return",
-								""
+								"2"
 							],
 							"query": [
 								{
@@ -225,7 +289,8 @@
 								},
 								{
 									"key": "bookid",
-									"value": "1"
+									"value": "1",
+									"disabled": true
 								}
 							]
 						}
@@ -237,22 +302,38 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Title\" : \"Taras Bulba 2\",\r\n    \"Author\" : [1,2,3],\r\n    \"PublCode\" : \"966-7047-40-4\",\r\n    \"Genre\" : \"Tale\",\r\n    \"PublCodeType\" : 1,\r\n    \"Year\" : 1998,\r\n    \"Country\" : \"UK\",\r\n    \"City\" : \"Liverpool\"\r\n}",
+							"raw": "{\r\n    \"Title\" : \"Taras Bulba 3\",\r\n    \"Author\" : [1,2,3],\r\n    \"PublCode\" : \"966-7047-40-4\",\r\n    \"Genre\" : \"Tale\",\r\n    \"PublCodeType\" : 1,\r\n    \"Year\" : 1998,\r\n    \"Country\" : \"UK\",\r\n    \"City\" : \"Liverpool\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "https://localhost:7089/librarian/books/add"
+						"url": {
+							"raw": "https://localhost:7089/librarian/books/add",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7089",
+							"path": [
+								"librarian",
+								"books",
+								"add"
+							]
+						}
 					},
 					"response": []
 				},
@@ -261,22 +342,38 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"BookID\" : 7,\r\n    \"Title\" : \"Taras Bulba\",\r\n    \"Author\" : [1,3],\r\n    \"PublCode\" : \"966-7047-40-44564\",\r\n    \"Genre\" : \"Fairy Tales\",\r\n    \"PublCodeType\" : 2,\r\n    \"Year\" : 1999,\r\n    \"Country\" : \"UKGBIS\"\r\n    //\"City\" : \"Manchester\"\r\n}",
+							"raw": "{\r\n    \"BookID\" : 6,\r\n    \"Title\" : \"Taras Bulba\",\r\n    \"Author\" : [1,3],\r\n    \"PublCode\" : \"966-7047-40-44564\",\r\n    \"Genre\" : \"Fairy Tales\",\r\n    \"PublCodeType\" : 2,\r\n    \"Year\" : 1999,\r\n    \"Country\" : \"UKGBIS\"\r\n    //\"City\" : \"Manchester\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "https://localhost:7089/librarian/books/update"
+						"url": {
+							"raw": "https://localhost:7089/librarian/books/update",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7089",
+							"path": [
+								"librarian",
+								"books",
+								"update"
+							]
+						}
 					},
 					"response": []
 				},
@@ -285,14 +382,18 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ",
+									"type": "string"
+								}
+							]
 						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7089/librarian/books/delete/?deletebookid=8",
+							"raw": "https://localhost:7089/librarian/books/delete/7",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -302,13 +403,7 @@
 								"librarian",
 								"books",
 								"delete",
-								""
-							],
-							"query": [
-								{
-									"key": "deletebookid",
-									"value": "8"
-								}
+								"7"
 							]
 						}
 					},
@@ -319,9 +414,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
@@ -334,7 +433,19 @@
 								}
 							}
 						},
-						"url": "https://localhost:7089/librarian/authors/add"
+						"url": {
+							"raw": "https://localhost:7089/librarian/authors/add",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7089",
+							"path": [
+								"librarian",
+								"authors",
+								"add"
+							]
+						}
 					},
 					"response": []
 				},
@@ -343,9 +454,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PUT",
 						"header": [],
@@ -358,7 +473,19 @@
 								}
 							}
 						},
-						"url": "https://localhost:7089/librarian/authors/update"
+						"url": {
+							"raw": "https://localhost:7089/librarian/authors/update",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7089",
+							"path": [
+								"librarian",
+								"authors",
+								"update"
+							]
+						}
 					},
 					"response": []
 				},
@@ -367,14 +494,18 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ",
+									"type": "string"
+								}
+							]
 						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7089/librarian/authors/delete/?deleteAuthorID=4",
+							"raw": "https://localhost:7089/librarian/authors/delete/4",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -384,13 +515,7 @@
 								"librarian",
 								"authors",
 								"delete",
-								""
-							],
-							"query": [
-								{
-									"key": "deleteAuthorID",
-									"value": "4"
-								}
+								"4"
 							]
 						}
 					},
@@ -401,13 +526,29 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
-						"url": "https://localhost:7089/librarian/info/debtors"
+						"url": {
+							"raw": "https://localhost:7089/librarian/info/debtors",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7089",
+							"path": [
+								"librarian",
+								"info",
+								"debtors"
+							]
+						}
 					},
 					"response": []
 				},
@@ -416,13 +557,29 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
-						"url": "https://localhost:7089/librarian/info/rented"
+						"url": {
+							"raw": "https://localhost:7089/librarian/info/rented",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7089",
+							"path": [
+								"librarian",
+								"info",
+								"rented"
+							]
+						}
 					},
 					"response": []
 				},
@@ -431,9 +588,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTExIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMTExQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJMaWJyYXJpYW4iLCJleHAiOjE3MDA2NjgxNzV9.Q6dVjR3veJ--61-13afTYSyOohcoPVddQW_MZCkbReDCgIHIbCsdRu0fh5Ctm6rkL7u4CdgQZFEpyuvsYC-5eQ",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -477,14 +638,24 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Login\" : \"333\",\r\n    \"Password\" : \"12345\"\r\n}",
+							"raw": "{\r\n    \"Login\" : \"11122334444555\",\r\n    \"Password\" : \"12345\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "https://localhost:7089/login"
+						"url": {
+							"raw": "https://localhost:7089/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7089",
+							"path": [
+								"login"
+							]
+						}
 					},
 					"response": []
 				},
@@ -496,9 +667,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMzMzIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMzMzQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJSZWFkZXIiLCJleHAiOjE3MDA2Njc3ODZ9.ejN-g5nVIcyj0q6HtvTf2c9acyA-7pdGtHwITqT5vwWebRtRQdTCyn6Z5q89Khao2f8NOWv5TJiH3Mv8RbfVDQ"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMzMzIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMzMzQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJSZWFkZXIiLCJleHAiOjE3MDA2Njc3ODZ9.ejN-g5nVIcyj0q6HtvTf2c9acyA-7pdGtHwITqT5vwWebRtRQdTCyn6Z5q89Khao2f8NOWv5TJiH3Mv8RbfVDQ",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
@@ -507,7 +682,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://localhost:7089/common/books/find?bookQuery=Taras Bulba",
+							"raw": "https://localhost:7089/common/books/find?bookQuery=gogol",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -521,7 +696,7 @@
 							"query": [
 								{
 									"key": "bookQuery",
-									"value": "Taras Bulba"
+									"value": "gogol"
 								}
 							]
 						}
@@ -538,14 +713,18 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMjIyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMjIyQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJSZWFkZXIiLCJleHAiOjE3MjQ2ODU4NjV9.j14KK5dhgigXsOTptNuanz6gyeRD0Uj4OWH2GZD-XyELjmgqiIzdPpcZDVyJ5n4-FtsNdXknXUS2w5kHAj78NA"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMjIyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMjIyQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJSZWFkZXIiLCJleHAiOjE3MjQ2ODU4NjV9.j14KK5dhgigXsOTptNuanz6gyeRD0Uj4OWH2GZD-XyELjmgqiIzdPpcZDVyJ5n4-FtsNdXknXUS2w5kHAj78NA",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7089/reader/rent?bookID=1",
+							"raw": "https://localhost:7089/reader/rent/2",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -553,13 +732,8 @@
 							"port": "7089",
 							"path": [
 								"reader",
-								"rent"
-							],
-							"query": [
-								{
-									"key": "bookID",
-									"value": "1"
-								}
+								"rent",
+								"2"
 							]
 						}
 					},
@@ -570,13 +744,28 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMzMzIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMzMzQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJSZWFkZXIiLCJleHAiOjE3MjQ3NDM1MDh9.SEgpDThNU2hHfMUBfmxlIb1nVI9niKCBu7y-78yyvcSSLOq5gRJh4QQ4qjHt-UguvUaQiUsjOaSkCX5NlzIqGg"
-							}
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMjIyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiMjIyQGxpYi5jb20udWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJSZWFkZXIiLCJleHAiOjE3MjQ2ODU4NjV9.j14KK5dhgigXsOTptNuanz6gyeRD0Uj4OWH2GZD-XyELjmgqiIzdPpcZDVyJ5n4-FtsNdXknXUS2w5kHAj78NA",
+									"type": "string"
+								}
+							]
 						},
 						"method": "GET",
 						"header": [],
-						"url": "https://localhost:7089/reader/history"
+						"url": {
+							"raw": "https://localhost:7089/reader/history",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7089",
+							"path": [
+								"reader",
+								"history"
+							]
+						}
 					},
 					"response": []
 				}
