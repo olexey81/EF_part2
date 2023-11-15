@@ -9,14 +9,8 @@ namespace Library.API.Controllers
     [ApiController]
     [Authorize(Roles = "Reader")]
 
-    public class ReaderController : ControllerBase
+    public class ReaderController : CommonController
     {
-        public string? ReaderLogin
-        {
-            get => User.Claims.First(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name").Value;
-            set { }
-        }
-
         private readonly IBookService _bookService;
 
         public ReaderController(IBookService bookService)
@@ -27,25 +21,18 @@ namespace Library.API.Controllers
         [HttpPost("rent/{bookID}")]
         public async Task<ActionResult> RentBook(int bookID)
         {
-            return Result(await _bookService.RentBook(bookID, ReaderLogin!));
+            return Result(await _bookService.RentBook(bookID, UserLogin!));
         }
 
         [HttpGet("history")]
         public async Task<ActionResult<List<ReaderHistoryDTO>>> GetHistory()
         {
-            var result = await _bookService.GetHistory(ReaderLogin);
+            var result = await _bookService.GetHistory(UserLogin);
 
-            if (result.Item1!.Count > 0)
-                return result.Item1;
+            if (result.Success && result.Result!.Count > 0)
+                return result.Result;
 
-            return NotFound(result.Item2);
+            return NotFound(result.Message);
         }
-        private ActionResult Result((bool, string) value)
-        {
-            if (value.Item1)
-                return Ok(value.Item2);
-            return BadRequest(value.Item2);
-        }
-
     }
 }

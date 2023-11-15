@@ -7,11 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Library.API.Controllers
 {
-    public record MyClass(string? email, int? numb);
-
-    //[Route("[controller]")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class AccountController : CommonController
     {
         private readonly IAccountService _accountService;
         private readonly ITokenService _tokenService;
@@ -27,80 +24,54 @@ namespace Library.API.Controllers
         {
             var account = await _accountService.GetAccount(loginData.Login, loginData.Password);
 
-            if (account.Item1 == null)
-                return this.Unauthorized(account.Item2);
+            if (!account.Success)
+                return this.Unauthorized(account.Message);
 
-            return Ok(new AccountTokenDTO(account.Item1, _tokenService.GetToken(account.Item1)));
+            return Ok(new AccountTokenDTO(account.Result!, _tokenService.GetToken(account.Result)));
         }
 
-        [Authorize]
+        [Authorize(Roles = "Librarian, Admin")]
         [HttpPost("registration/reader")]
         public async Task<ActionResult> RegistrationReader([FromBody] AccountRegistrationDTO signInData)
         {
-            if (!User.IsInRole("Librarian") && !User.IsInRole("Admin"))
-                return Unauthorized("This action available only for librarians or admins");
-
             signInData.Role = UserRole.Reader;
             return Result(await _accountService.AddAccount(signInData));
         }
 
-        [Authorize]
+        [Authorize(Roles = "Librarian, Admin")]
         [HttpPut("registration/reader/update")]
         public async Task<ActionResult> UpdateReader([FromBody] AccountUpdateDTO updateReader)
         {
-            if (!User.IsInRole("Librarian") && !User.IsInRole("Admin"))
-                return Unauthorized("This action available only for librarians or admins");
-
             return Result(await _accountService.UpdateAccount(updateReader));
         }
 
-        [Authorize]
+        [Authorize(Roles = "Librarian, Admin")]
         [HttpDelete("registration/reader/delete/{readerLogin}")]
         public async Task<ActionResult> DeleteReader(string readerLogin)
         {
-            if (!User.IsInRole("Librarian") && !User.IsInRole("Admin"))
-                return Unauthorized("This action available only for librarians or admins");
-
             return Result(await _accountService.DeleteAccount(readerLogin));
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost("registration/librarian")]
         public async Task<ActionResult> LibrarianRegistration([FromBody] AccountRegistrationDTO signInData)
         {
-            if (!User.IsInRole("Admin"))
-                return Unauthorized("This action available only for admins");
-
             signInData.Role = UserRole.Librarian;
             return Result(await _accountService.AddAccount(signInData));
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPut("registration/librarian/update")]
         public async Task<ActionResult> UpdateReaderLibrarian([FromBody] AccountUpdateDTO updateLibrarian)
         {
-            if (!User.IsInRole("Admin"))
-                return Unauthorized("This action available only for admins");
-
             return Result(await _accountService.UpdateAccount(updateLibrarian));
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpDelete("registration/librarian/delete/{librarianLogin}")]
         public async Task<ActionResult<AccountDTO>> DeleteLibrarian(string librarianLogin)
         {
-            if (!User.IsInRole("Admin"))
-                return Unauthorized("This action available only for admins");
-
             return Result(await _accountService.DeleteAccount(librarianLogin));
         }
-
-        private ActionResult Result((bool, string) value)
-        {
-            if (value.Item1)
-                return Ok(value.Item2);
-            return BadRequest(value.Item2);
-        }
-
     }
 }

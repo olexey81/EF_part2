@@ -1,6 +1,4 @@
-﻿using Library.Common.Models;
-
-namespace Library.Common.DTO.Books
+﻿namespace Library.Common.DTO.Books
 {
     public record BookInfoDTO()
     {

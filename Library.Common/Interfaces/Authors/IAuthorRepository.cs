@@ -5,11 +5,11 @@ namespace Library.Common.Interfaces.Authors
 {
     public interface IAuthorRepository
     {
-        Task<(bool, string)> AddAuthor(AuthorAddDTO newAuthor);
-        Task<(bool, string)> DeleteAuthor(int deleteAuthorID);
+        Task<ServiceResult> AddAuthor(AuthorAddDTO newAuthor);
+        Task<ServiceResult> DeleteAuthor(int deleteAuthorID);
         Task<List<AuthorModel>?> FindAuthors(string query);
         Task<bool> IsAuthorExistByID(int? authorID);
         Task<bool> IsAuthorExistByListID(List<int> authorID);
-        Task<(bool, string)> UpdateAuthor(AuthorUpdateDTO updateAuthor);
+        Task<ServiceResult> UpdateAuthor(AuthorUpdateDTO updateAuthor);
     }
 }

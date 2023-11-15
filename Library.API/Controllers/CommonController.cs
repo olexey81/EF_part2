@@ -1,33 +1,17 @@
-﻿using Library.Common.DTO.Books;
-using Library.Common.Interfaces.Books;
-using Microsoft.AspNetCore.Authorization;
+﻿using Library.Common.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.API.Controllers
 {
-    [Route("[controller]")]
-    [ApiController]
-    [Authorize]
     public class CommonController : ControllerBase
     {
-        private readonly IBookService _bookService;
+        protected string? UserLogin => User.Claims.First(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name").Value;
 
-        public CommonController(IBookService bookService)
+        protected ActionResult Result(ServiceResult value)
         {
-            _bookService = bookService;
-        }
-
-        [HttpGet("books/find")]
-        public async Task<ActionResult<List<BookInfoDTO>?>> FindBook([FromQuery] string? bookQuery)
-        {
-            if (string.IsNullOrEmpty(bookQuery))
-                return BadRequest("Query is empty!");
-
-            var result = await _bookService.FindBook(bookQuery);
-            if (result != null)
-                return result;
-
-            return NotFound("Book not found");
+            if (value.Success)
+                return Ok(value.Message);
+            return BadRequest(value.Message);
         }
     }
 }

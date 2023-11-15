@@ -3,7 +3,6 @@ using Library.Common.DTO.Accounts;
 using Library.Common.DTO.Books;
 using Library.Common.DTO.Readers;
 using Library.Common.Models;
-using Library_DAL_2.Models;
 
 namespace Library.Services
 {
@@ -11,11 +10,9 @@ namespace Library.Services
     {
         public AutomapperServicesProfile()
         {
-
             CreateMap<AccountRegistrationDTO, AccountFullModel>();
             CreateMap<BookModel, BookInfoDTO>();
             CreateMap<HistoryModel, ReaderHistoryDTO>();
-
         }
     }
 }

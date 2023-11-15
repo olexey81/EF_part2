@@ -1,11 +1,12 @@
 ﻿using Library.Common.DTO.Authors;
+using Library.Common.Models;
 
 namespace Library.Common.Interfaces.Authors
 {
     public interface IAuthorService
     {
-        Task<(bool, string)> AddAuthor(AuthorAddDTO newAuthor);
-        Task<(bool, string)> DeleteAuthor(int deleteAuthorID);
-        Task<(bool, string)> UpdateAuthor(AuthorUpdateDTO updateAuthor);
+        Task<ServiceResult> AddAuthor(AuthorAddDTO newAuthor);
+        Task<ServiceResult> DeleteAuthor(int deleteAuthorID);
+        Task<ServiceResult> UpdateAuthor(AuthorUpdateDTO updateAuthor);
     }
 }

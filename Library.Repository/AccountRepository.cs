@@ -19,10 +19,11 @@ namespace Library.Repository
             _context = context;
             _mapper = mapper;
         }
-        public async Task<(bool, string)> AddAccount(AccountFullModel newAccount)
+
+        public async Task<ServiceResult> AddAccount(AccountFullModel newAccount)
         {
             if (await IsAccountExists(newAccount.Login))
-                return (false, "Login is already using by another user");
+                return new ServiceResult(false, "Login is already using by another user");
 
             if (newAccount.Role == UserRole.Librarian)
                 await _context.Librarians.AddAsync(_mapper.Map<Librarian>(newAccount));
@@ -31,9 +32,10 @@ namespace Library.Repository
                 await _context.Readers.AddAsync(_mapper.Map<Reader>(newAccount));
 
             if (await _context.SaveChangesAsync() > 0)
-                return (true, "Account added");
-            return (false, "No changes");
+                return new ServiceResult(true, "Account added");
+            return new ServiceResult(false, "No changes");
         }
+
         public async Task<AccountShortModel?> GetAccount(string login)
         {
             if (await IsAccountExists(login))
@@ -52,6 +54,7 @@ namespace Library.Repository
 
             return null;
         }
+
         public async Task<(byte[] hash, byte[] salt)?> GetAccountHash(string login)
         {
             var user = await _context.Admins.AsNoTracking()
@@ -66,6 +69,7 @@ namespace Library.Repository
 
             return user == null ? null : (user.PasswordHash, user.PasswordSalt);
         }
+
         public async Task<bool> IsAccountExists(string login)
         {
             return
@@ -74,10 +78,10 @@ namespace Library.Repository
                 || await _context.Readers.AsNoTracking().AnyAsync(a => a.Login == login);
         }
 
-        public async Task<(bool, string)> UpdateAccount(AccountUpdateDTO updateAccount)
+        public async Task<ServiceResult> UpdateAccount(AccountUpdateDTO updateAccount)
         {
             if (!await IsAccountExists(updateAccount.Login))
-                return (false, "User doesn't exists");
+                return new ServiceResult(false, "User doesn't exists");
 
             var account = await GetAccount(updateAccount.Login);
             if (account != null && account.Role == UserRole.Reader.ToString())
@@ -91,7 +95,7 @@ namespace Library.Repository
                 reader.DocumentType = updateAccount.DocumentType ?? reader.DocumentType;
 
                 if (await _context.SaveChangesAsync() > 0)
-                    return (true, "Reader updated");
+                    return new ServiceResult(true, "Reader updated");
             }
             if (account != null && account.Role == UserRole.Librarian.ToString())
             {
@@ -99,28 +103,28 @@ namespace Library.Repository
                 librarian!.Email = updateAccount.Email ?? librarian.Email;
 
                 if (await _context.SaveChangesAsync() > 0)
-                    return (true, "Librarian updated");
+                    return new ServiceResult(true, "Librarian updated");
             }
-            return (false, "No changes");
+            return new ServiceResult(false, "No changes");
         }
-        public async Task<(bool, string)> DeleteAccount(string login)
+        public async Task<ServiceResult> DeleteAccount(string login)
         {
             if (!await IsAccountExists(login))
-                return (false, "User doesn't exists");
+                return new ServiceResult(false, "User doesn't exists");
 
             var readerToRemove = await _context.Readers.FirstOrDefaultAsync(r => r.Login == login);
             if (readerToRemove != null)
                 _context.Readers.Remove(readerToRemove);
             if (await _context.SaveChangesAsync() > 0)
-                return (true, "Reader deleted");
+                return new ServiceResult(true, "Reader deleted");
 
             var librarianToRemove = await _context.Librarians.FirstOrDefaultAsync(l => l.Login == login);
             if (librarianToRemove != null)
                 _context.Librarians.Remove(librarianToRemove);
             if (await _context.SaveChangesAsync() > 0)
-                return (true, "Librarian deleted");
+                return new ServiceResult(true, "Librarian deleted");
 
-            return (false, "No changes");
+            return new ServiceResult(false, "No changes");
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Library.API.Controllers
     [Route("[controller]")]
     [ApiController]
     [Authorize(Roles = "Librarian")]
-    public class LibrarianController : ControllerBase
+    public class LibrarianController : CommonController
     {
         private readonly IBookService _bookService;
         private readonly IAuthorService _authorService;
@@ -101,13 +101,6 @@ namespace Library.API.Controllers
                 return result;
 
             return NotFound("No history for the reader");
-        }
-
-        private ActionResult Result((bool, string) value)
-        {
-            if (value.Item1)
-                return Ok(value.Item2);
-            return BadRequest(value.Item2);
         }
     }
 }

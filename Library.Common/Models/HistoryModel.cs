@@ -4,7 +4,7 @@
     {
         public int ID { get; set; }
         public int BookID { get; set; }
-        public string BookTitle { get; set; } = string.Empty;   
+        public string BookTitle { get; set; } = string.Empty;
         public string ReaderLogin { get; set; } = string.Empty;
         public int ReaderFullName { get; set; }
         public DateTime RentDate { get; set; }

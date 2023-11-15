@@ -19,23 +19,24 @@ namespace Library.Repository
             _mapper = mapper;
         }
 
-        public async Task<(bool, string)> AddAuthor(AuthorAddDTO newAuthor)
+        public async Task<ServiceResult> AddAuthor(AuthorAddDTO newAuthor)
         {
             if (await FindAuthors(newAuthor.FirstName + " " + (newAuthor.MiddleName == null ? "" : (newAuthor.MiddleName + " ")) + newAuthor.LastName) != null)
-                return (false, "Author already exists");
+                return new ServiceResult(false, "Author already exists");
 
             var author = _mapper.Map<Author>(newAuthor);
 
             await _context.Authors.AddAsync(author);
 
             if (await _context.SaveChangesAsync() > 0)
-                return (true, "Author added");
-            return (false, "No changes");
+                return new ServiceResult(true, "Author added");
+            return new ServiceResult(false, "No changes");
         }
-        public async Task<(bool, string)> DeleteAuthor(int deleteAuthorID)
+
+        public async Task<ServiceResult> DeleteAuthor(int deleteAuthorID)
         {
             if (!await IsAuthorExistByID(deleteAuthorID))
-                return (false, "Author not found");
+                return new ServiceResult(false, "Author not found");
 
             var author = await _context.Authors.FirstOrDefaultAsync(b => b.AuthorID == deleteAuthorID);
 
@@ -44,9 +45,10 @@ namespace Library.Repository
             _context.Authors.Remove(author!);
 
             if(await _context.SaveChangesAsync() > 0)
-                return (true, "Author deleted");
-            return (false, "No changes");
+                return new ServiceResult(true, "Author deleted");
+            return new ServiceResult(false, "No changes");
         }
+
         public async Task<List<AuthorModel>?> FindAuthors(string query)
         {
             List<Author>? authors = null;
@@ -68,6 +70,7 @@ namespace Library.Repository
             return result;
         }
         public async Task<bool> IsAuthorExistByID(int? authorID) => await _context.Authors.AsNoTracking().AnyAsync(b => b.AuthorID == authorID);
+
         public async Task<bool> IsAuthorExistByListID(List<int> authorListID)
         {
             bool result = false;
@@ -80,10 +83,11 @@ namespace Library.Repository
             }
             return result;
         }
-        public async Task<(bool, string)> UpdateAuthor(AuthorUpdateDTO updateAuthor)
+
+        public async Task<ServiceResult> UpdateAuthor(AuthorUpdateDTO updateAuthor)
         {
             if (!await IsAuthorExistByID(updateAuthor.AuthorID))
-                return (false, "Author not found");
+                return new ServiceResult(false, "Author not found");
 
             var author = await _context.Authors.FirstOrDefaultAsync(b => b.AuthorID == updateAuthor.AuthorID);
 
@@ -95,8 +99,8 @@ namespace Library.Repository
             }
 
             if(await _context.SaveChangesAsync() > 0)
-                return (true, "Author updated");
-            return (false, "No changes");
+                return new ServiceResult(true, "Author updated");
+            return new ServiceResult(false, "No changes");
         }
     }
 }
