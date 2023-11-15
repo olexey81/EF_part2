@@ -3,6 +3,7 @@ using Library.Common.Interfaces.Books;
 using Library.Common.DTO.Books;
 using Library.Common.DTO.Readers;
 using AutoMapper;
+using Library.Common.Models;
 
 namespace Library.Services
 {
@@ -19,45 +20,47 @@ namespace Library.Services
             _mapper = mapper;
         }
 
-        public async Task<(bool, string)> AddBook(BookAddDTO newBook)
+        public async Task<ServiceResult> AddBook(BookAddDTO newBook)
         {
             if (await _bookRepository.IsBookExistsByTitle(newBook.Title))
-                return (false, "Book already exists");
+                return new ServiceResult(false, "Book already exists");
 
             List<int> authors = newBook.Author;
             if (!await _authorRepository.IsAuthorExistByListID(authors))
-                return (false, "Not all of authors are in the DB");
+                return new ServiceResult(false, "Not all of authors are in the DB");
 
             return await _bookRepository.AddBook(newBook, authors);
         }
-        public async Task<(bool, string)> DeleteBook(int deleteBookID)
+
+        public async Task<ServiceResult> DeleteBook(int deleteBookID)
         {
             return await _bookRepository.DeleteBook(deleteBookID);
         }
+
         public async Task<List<BookInfoDTO>?> FindBook(string query)
         {
             var authors = await _authorRepository.FindAuthors(query);
             var books = await _bookRepository.FindBooks(query, authors);
-
-            if (books.Count > 0) 
-                return _mapper.Map<List<BookInfoDTO>>(books);
-            else
-                return null;
+            return books.Count > 0 ? _mapper.Map<List<BookInfoDTO>>(books) : null;
         }
-        public async Task<(List<ReaderHistoryDTO>?, string)> GetHistory(string? readerLogin)
+
+        public async Task<ServiceResult<List<ReaderHistoryDTO>>> GetHistory(string? readerLogin)
         {
             var reposUnswer = await _bookRepository.GetHistory(readerLogin);
-            return (_mapper.Map<List<ReaderHistoryDTO>>(reposUnswer.Item1), reposUnswer.Item2);
+            return new ServiceResult<List<ReaderHistoryDTO>>(reposUnswer.Success, reposUnswer.Message) { Result = _mapper.Map<List<ReaderHistoryDTO>>(reposUnswer.Result) };
         }
-        public async Task<(bool, string)> RentBook(int bookID, string readerLogin)
+
+        public async Task<ServiceResult> RentBook(int bookID, string readerLogin)
         {
             return await _bookRepository.RentBook(bookID, readerLogin);
         }
-        public async Task<(bool, string)> ReturnBook(string readerID, int bookID)
+
+        public async Task<ServiceResult> ReturnBook(string readerID, int bookID)
         {
             return await _bookRepository.ReturnBook(readerID, bookID);
         }
-        public async Task<(bool, string)> UpdateBook(BookUpdateDTO updateBook)
+
+        public async Task<ServiceResult> UpdateBook(BookUpdateDTO updateBook)
         {
             return await _bookRepository.UpdateBook(updateBook);
         }

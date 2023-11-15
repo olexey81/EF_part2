@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Library_DAL_2.Models
+﻿namespace Library_DAL_2.Models
 {
     public class Book
     {
@@ -15,11 +13,8 @@ namespace Library_DAL_2.Models
         public string? City { get; set; } = null!;
         public bool AtReader { get; set; }
 
-        //[JsonIgnore]
         public Author? AuthorNavigation { get; set; }
-        [JsonIgnore]
         public List<BooksAuthor>? BooksAuthors { get; set; }
-        //[JsonIgnore]
         public PublCodeType? PublCodeTypeNavigation { get; set; }
 
         public override string ToString()
@@ -35,7 +30,6 @@ namespace Library_DAL_2.Models
             Console.ForegroundColor = ConsoleColor.Green;
             return $"{BookID}. Book title: \"{Title}\"\tAuthors: {authors}";
         }
-
     }
 }
 

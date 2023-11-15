@@ -1,5 +1,4 @@
 ﻿using Library.Common.Enums;
-using System.Text.Json.Serialization;
 
 namespace Library_DAL_2.Models
 {
@@ -22,7 +21,7 @@ namespace Library_DAL_2.Models
 
         public string DocumentNumber { get; set; } = string.Empty;
         public int DocumentType { get; set; }
-        [JsonIgnore]
+
         public DocumentsType? DocumentTypeNavigation { get; set; }
 
         public override string ToString()

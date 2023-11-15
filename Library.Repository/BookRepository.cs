@@ -19,7 +19,7 @@ namespace Library.Repository
             _mapper = mapper;
         }
 
-        public async Task<(bool, string)> AddBook(BookAddDTO newBook, List<int> authors)
+        public async Task<ServiceResult> AddBook(BookAddDTO newBook, List<int> authors)
         {
             var book = _mapper.Map<Book>(newBook);
             await _context.Books.AddAsync(book);
@@ -35,13 +35,13 @@ namespace Library.Repository
                 await _context.BooksAuthors.AddAsync(newBA);
             }
             if (count + await _context.SaveChangesAsync() > 0)
-                return (true, "Book added");
-            return (false, "No any changes");
+                return new ServiceResult(true, "Book added");
+            return new ServiceResult(false, "No any changes");
         }
-        public async Task<(bool, string)> DeleteBook(int deleteBookID)
+        public async Task<ServiceResult> DeleteBook(int deleteBookID)
         {
             if (!await _context.Books.AsNoTracking().AnyAsync(b => b.BookID == deleteBookID))
-                return (false, "Book not found");
+                return new ServiceResult(false, "Book not found");
 
             var book = await _context.Books.FirstOrDefaultAsync(b => b.BookID == deleteBookID);
 
@@ -50,8 +50,8 @@ namespace Library.Repository
             _context.Books.Remove(book!);
 
             if (await _context.SaveChangesAsync() > 0)
-                return (true, "Book deleted");
-            return (false, "No any changes");
+                return new ServiceResult(true, "Book deleted");
+            return new ServiceResult(false, "No any changes");
         }
         public async Task<List<BookModel>> FindBooks(string title, List<AuthorModel>? authors)
         {
@@ -82,10 +82,10 @@ namespace Library.Repository
             var result = _mapper.Map<List<BookModel>>(books);
             return result;
         }
-        public async Task<(List<HistoryModel>?, string)> GetHistory(string? readerLogin)
+        public async Task<ServiceResult<List<HistoryModel>>> GetHistory(string? readerLogin)
         {
             if (!await _context.Readers.AsNoTracking().AnyAsync(r => r.Login == readerLogin))
-                return (null, "Reader not found");
+                return new ServiceResult<List<HistoryModel>>(false, "Reader not found");
 
             var historyRecords = await _context.Histories
                                         .AsNoTracking()
@@ -96,17 +96,17 @@ namespace Library.Repository
                                         .ToListAsync();
 
             if (historyRecords.Count < 1)
-                return (null, "Reader doesn't have history");
+                return new ServiceResult<List<HistoryModel>>(false, "Reader doesn't have history");
 
             var result = _mapper.Map<List<HistoryModel>>(historyRecords);
-            return (result, "Ok");
+            return new ServiceResult<List<HistoryModel>>(true, "Ok") { Result = result };
         }
         public async Task<bool> IsBookExistsByTitle(string title) => await _context.Books.AsNoTracking().AnyAsync(b => b.Title == title);
-        public async Task<(bool, string)> ReturnBook(string readerID, int bookID)
+        public async Task<ServiceResult> ReturnBook(string readerID, int bookID)
         {
             if (await _context.Histories.AsNoTracking().CountAsync() <= 0)
             {
-                return (false, "History is empty");
+                return new ServiceResult(false, "History is empty");
             }
 
             var historyRecord = await _context.Histories
@@ -118,18 +118,18 @@ namespace Library.Repository
                 historyRecord.Book!.AtReader = false;
                 historyRecord.ReturnDate = DateTime.Now;
                 if (_context.SaveChanges() > 0)
-                    return (true, "The book was returned");
-                return (false, "No any changes");
+                    return new ServiceResult(true, "The book was returned");
+                return new ServiceResult(false, "No any changes");
             }
             else
             {
-                return (false, "User doesn't hold the book");
+                return new ServiceResult(false, "User doesn't hold the book");
             }
         }
-        public async Task<(bool, string)> UpdateBook(BookUpdateDTO updateBook)
+        public async Task<ServiceResult> UpdateBook(BookUpdateDTO updateBook)
         {
             if (!await _context.Books.AsNoTracking().AnyAsync(b => b.BookID == updateBook.BookID))
-                return (false, "Book not found");
+                return new ServiceResult(false, "Book not found");
 
             var book = await _context.Books.FirstOrDefaultAsync(b => b.BookID == updateBook.BookID);
             if (book != null)
@@ -165,17 +165,17 @@ namespace Library.Repository
                 }
             }
             if (await _context.SaveChangesAsync() > 0)
-                return (true, "Book changed");
-            return (false, "No any changes");
+                return new ServiceResult(true, "Book changed");
+            return new ServiceResult(false, "No any changes");
         }
-        public async Task<(bool, string)> RentBook(int bookID, string readerLogin)
+        public async Task<ServiceResult> RentBook(int bookID, string readerLogin)
         {
             var book = await _context.Books.FirstOrDefaultAsync(b => b.BookID == bookID);
 
             if (book == null)
-                return (false, "Book not found");
+                return new ServiceResult(false, "Book not found");
             if (book.AtReader)
-                return (false, "Book rented by another reader");
+                return new ServiceResult(false, "Book rented by another reader");
 
             var newHistory = new History()
             {
@@ -188,7 +188,7 @@ namespace Library.Repository
             await _context.Histories.AddAsync(newHistory);
             await _context.SaveChangesAsync();
 
-            return (true, "Book rented");
+            return new ServiceResult(true, "Book rented");
         }
     }
 }

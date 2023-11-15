@@ -1,5 +1,6 @@
 ﻿using Library.Common.Interfaces.Authors;
 using Library.Common.DTO.Authors;
+using Library.Common.Models;
 
 namespace Library.Services
 {
@@ -12,15 +13,17 @@ namespace Library.Services
             _authorRepository = authorRepository;
         }
 
-        public async Task<(bool, string)> AddAuthor(AuthorAddDTO newAuthor)
+        public async Task<ServiceResult> AddAuthor(AuthorAddDTO newAuthor)
         {
             return await _authorRepository.AddAuthor(newAuthor);
         }
-        public async Task<(bool, string)> DeleteAuthor(int deleteAuthorID)
+
+        public async Task<ServiceResult> DeleteAuthor(int deleteAuthorID)
         {
             return await _authorRepository.DeleteAuthor(deleteAuthorID);
         }
-        public async Task<(bool, string)> UpdateAuthor(AuthorUpdateDTO updateAuthor)
+
+        public async Task<ServiceResult> UpdateAuthor(AuthorUpdateDTO updateAuthor)
         {
             return await _authorRepository.UpdateAuthor(updateAuthor);
         }

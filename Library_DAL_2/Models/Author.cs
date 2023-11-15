@@ -1,7 +1,4 @@
-﻿using System.Text;
-using System.Text.Json.Serialization;
-
-namespace Library_DAL_2.Models
+﻿namespace Library_DAL_2.Models
 {
     public class Author
     {
@@ -14,9 +11,9 @@ namespace Library_DAL_2.Models
             get => FirstName + " " + (MiddleName == null ? "" : (MiddleName + " ")) + LastName;
             set { }
         }
-        [JsonIgnore]
+
         public List<Book>? Books { get; set; }
-        [JsonIgnore]
+
         public List<BooksAuthor>? BooksAuthors { get; set; }
 
         public override string ToString()

@@ -6,10 +6,10 @@ namespace Library.Common.Interfaces.Accounts
 {
     public interface IAccountService
     {
-        Task<(bool, string)> AddAccount(AccountRegistrationDTO signInData);
-        Task<(bool, string)> DeleteAccount(string authorID);
+        Task<ServiceResult> AddAccount(AccountRegistrationDTO signInData);
+        Task<ServiceResult> DeleteAccount(string authorID);
         Task<bool> IsAccountExists(string login);
-        Task<(AccountShortModel?, string)> GetAccount(string login, string? password);
-        Task<(bool, string)> UpdateAccount(AccountUpdateDTO updateAuthor);
+        Task<ServiceResult<AccountShortModel>> GetAccount(string login, string? password);
+        Task<ServiceResult> UpdateAccount(AccountUpdateDTO updateAuthor);
     }
 }

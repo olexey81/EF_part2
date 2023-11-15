@@ -7,9 +7,9 @@ namespace Library.Common.Interfaces.Accounts
     {
         Task<AccountShortModel?> GetAccount(string login);
         Task<(byte[] hash, byte[] salt)?> GetAccountHash(string login);
-        Task<(bool,string)> AddAccount(AccountFullModel account);
+        Task<ServiceResult> AddAccount(AccountFullModel account);
         Task<bool> IsAccountExists(string login);
-        Task<(bool, string)> UpdateAccount(AccountUpdateDTO updateAuthor);
-        Task<(bool, string)> DeleteAccount(string readerLogin);
+        Task<ServiceResult> UpdateAccount(AccountUpdateDTO updateAuthor);
+        Task<ServiceResult> DeleteAccount(string readerLogin);
     }
 }

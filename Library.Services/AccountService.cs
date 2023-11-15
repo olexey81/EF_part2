@@ -19,7 +19,7 @@ namespace Library.Services
             _mapper = mapper;
         }
 
-        public async Task<(bool, string)> AddAccount(AccountRegistrationDTO signInData)
+        public async Task<ServiceResult> AddAccount(AccountRegistrationDTO signInData)
         {
             var newAccount = _mapper.Map<AccountFullModel>(signInData);
 
@@ -29,7 +29,7 @@ namespace Library.Services
             return await _accountRepository.AddAccount(newAccount);
         }
 
-        public async Task<(AccountShortModel?, string)> GetAccount(string login, string? password = null)
+        public async Task<ServiceResult<AccountShortModel>> GetAccount(string login, string? password = null)
         {
             var account = await _accountRepository.GetAccount(login);
 
@@ -38,16 +38,15 @@ namespace Library.Services
                 var hash = (await _accountRepository.GetAccountHash(account.Login)).Value;
                 var hashForCheck = _hashService.GetHash(password, hash.salt).hash;
                 if (!hash.hash.SequenceEqual(hashForCheck))
-                    return (null, "Incorrect password");
+                    return new ServiceResult<AccountShortModel>(false, "Incorrect password");
             }
-            return (account, "User not found");
+            return new ServiceResult<AccountShortModel>(account != null, "User not found") { Result = account };
         }
 
         public async Task<bool> IsAccountExists(string login) => await _accountRepository.IsAccountExists(login);
 
-        public async Task<(bool, string)> UpdateAccount(AccountUpdateDTO updateAuthor) => await _accountRepository.UpdateAccount(updateAuthor);
+        public async Task<ServiceResult> UpdateAccount(AccountUpdateDTO updateAuthor) => await _accountRepository.UpdateAccount(updateAuthor);
 
-        public async Task<(bool, string)> DeleteAccount(string readerLogin) => await _accountRepository.DeleteAccount(readerLogin);
-        
+        public async Task<ServiceResult> DeleteAccount(string readerLogin) => await _accountRepository.DeleteAccount(readerLogin);
     }
 }
