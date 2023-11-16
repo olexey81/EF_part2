@@ -1,10 +1,10 @@
-﻿using Library_DAL_2.Models;
+﻿using Library.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Library_DAL_2
+namespace Library.DAL
 {
     public class LibraryContext : DbContext
     {

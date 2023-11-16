@@ -3,8 +3,8 @@ using Library.Common.DTO.Accounts;
 using Library.Common.Enums;
 using Library.Common.Interfaces.Accounts;
 using Library.Common.Models;
-using Library_DAL_2;
-using Library_DAL_2.Models;
+using Library.DAL;
+using Library.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Library.Repository

@@ -1,4 +1,4 @@
-﻿namespace Library_DAL_2.Models
+﻿namespace Library.DAL.Models
 {
     public class Book
     {
@@ -19,7 +19,7 @@
 
         public override string ToString()
         {
-            string authors = string.Join(", ", BooksAuthors!.Select(ba => ba.Author.FirstName + " " + ba.Author.LastName));
+            string authors = string.Join(", ", BooksAuthors!.Select(ba => ba.Author!.FirstName + " " + ba.Author.LastName));
 
             if (AtReader == true)
             {

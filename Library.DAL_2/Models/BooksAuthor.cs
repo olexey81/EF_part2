@@ -1,4 +1,4 @@
-﻿namespace Library_DAL_2.Models
+﻿namespace Library.DAL.Models
 {
     public class BooksAuthor
     {

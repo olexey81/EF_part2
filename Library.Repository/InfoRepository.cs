@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using Library.Common.Interfaces.Infos;
 using Library.Common.Models;
-using Library_DAL_2;
-using Library_DAL_2.Models;
+using Library.DAL;
 using Microsoft.EntityFrameworkCore;
 
 namespace Library.Repository
